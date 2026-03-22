@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flor Rosa Activewear· Ropa Deportiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #f5f2ee;
+      --charcoal: #1a1a1a;
+      --warm-gray: #9e9990;
+      --accent: #c17f5a;
+      --light-border: #e0dbd4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ANNOUNCEMENT BAR */
+    .announce {
+      background: var(--charcoal);
+      color: var(--cream);
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .announce a { color: var(--cream); text-decoration: underline; }
+
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--light-border);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .hamburger { font-size: 20px; cursor: pointer; color: var(--charcoal); background: none; border: none; }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    .header-icons { display: flex; gap: 18px; align-items: center; }
+    .header-icons button {
+      background: none; border: none; cursor: pointer;
+      font-size: 18px; color: var(--charcoal);
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      padding: 12px 40px;
+      border-bottom: 1px solid var(--light-border);
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    nav a.active { border-bottom: 1.5px solid var(--charcoal); }
+
+    /* HERO BANNER */
+    .hero {
+      background: linear-gradient(135deg, #2b2522 0%, #3d2e27 50%, #1a1a1a 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 80px;
+      min-height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(193,127,90,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 58px;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: 2px;
+    }
+    .hero-text h1 em { font-style: italic; color: #d4a882; }
+    .hero-text p {
+      margin-top: 14px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+    }
+    .hero-cta {
+      margin-top: 28px;
+      display: inline-block;
+      padding: 13px 34px;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .hero-cta:hover { background: white; color: var(--charcoal); }
+
+    .hero-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.04);
+      letter-spacing: -2px;
+      position: absolute;
+      right: 60px;
+      bottom: -10px;
+    }
+
+    /* CATEGORY BAR */
+    .categories {
+      display: flex;
+      gap: 0;
+      padding: 0 40px;
+      border-bottom: 1px solid var(--light-border);
+      overflow-x: auto;
+    }
+    .cat-btn {
+      padding: 16px 28px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-btn:hover { color: var(--charcoal); }
+    .cat-btn.active { color: var(--charcoal); border-bottom-color: var(--charcoal); }
+
+    /* SECTION TITLE */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 40px 40px 24px;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .section-header .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1px solid var(--light-border);
+      padding: 10px 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--charcoal);
+      transition: all 0.2s;
+    }
+    .section-header .filter-btn:hover { background: var(--charcoal); color: var(--cream); }
+
+    .product-count {
+      font-size: 12px;
+      color: var(--warm-gray);
+      letter-spacing: 1px;
+    }
+
+    /* PRODUCT GRID */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      padding: 0 40px 60px;
+    }
+
+    @media (min-width: 768px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1100px) {
+      .product-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .product-card {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .product-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: #e8e3dc;
+      position: relative;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img img { transform: scale(1.04); }
+
+    .product-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+
+    /* Color swatch products */
+    .swatch-vino { background: linear-gradient(160deg, #8b4513 0%, #6b2d0e 100%); }
+    .swatch-gris { background: linear-gradient(160deg, #b0aaa3 0%, #8a8480 100%); }
+    .swatch-oliva { background: linear-gradient(160deg, #6b7c4a 0%, #4d5a35 100%); }
+    .swatch-rojo { background: linear-gradient(160deg, #c0392b 0%, #922b21 100%); }
+    .swatch-negro { background: linear-gradient(160deg, #2c2c2c 0%, #1a1a1a 100%); }
+    .swatch-nude { background: linear-gradient(160deg, #d4a882 0%, #b8896a 100%); }
+    .swatch-azul { background: linear-gradient(160deg, #2c4a7c 0%, #1a2d4a 100%); }
+    .swatch-verde { background: linear-gradient(160deg, #2d6a4f 0%, #1a3d30 100%); }
+
+    .brand-label {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 3px;
+    }
+
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-card:hover .product-overlay { background: rgba(0,0,0,0.1); }
+
+    .quick-add {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s;
+      background: white;
+      color: var(--charcoal);
+      border: none;
+      padding: 12px 24px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .product-card:hover .quick-add { opacity: 1; transform: translateY(0); }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.2s;
+    }
+    .wishlist-btn:hover { color: white; }
+
+    .product-info {
+      padding: 14px 4px 24px;
+    }
+    .product-info h3 {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+    .product-info .price {
+      font-size: 13px;
+      color: var(--charcoal);
+      letter-spacing: 0.5px;
+    }
+    .product-info .price .currency {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+    }
+
+    .color-dots {
+      display: flex;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.15);
+    }
+
+    /* FOOTER CTA */
+    .footer-cta {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+    .footer-cta p {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+    .footer-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+    .footer-cta a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 14px 40px;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .footer-cta a:hover { background: white; color: var(--charcoal); }
+
+    /* FOOTER */
+    footer {
+      padding: 30px 40px;
+      border-top: 1px solid var(--light-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--warm-gray);
+      letter-spacing: 1px;
+    }
+
+    /* Silhouette figures inside swatches */
+    .fig {
+      width: 60%;
+      height: 80%;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* animate on load */
+    .product-card {
+      animation: fadeUp 0.5s ease both;
+    }
+    .product-card:nth-child(1) { animation-delay: 0.05s; }
+    .product-card:nth-child(2) { animation-delay: 0.1s; }
+    .product-card:nth-child(3) { animation-delay: 0.15s; }
+    .product-card:nth-child(4) { animation-delay: 0.2s; }
+    .product-card:nth-child(5) { animation-delay: 0.25s; }
+    .product-card:nth-child(6) { animation-delay: 0.3s; }
+    .product-card:nth-child(7) { animation-delay: 0.35s; }
+    .product-card:nth-child(8) { animation-delay: 0.4s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement -->
+  <div class="announce">
+    Envío gratis en compras mayores a ₡30,000 &nbsp;→
+  </div>
+
+  <!-- Header -->
+  <header>
+    <button class="hamburger">☰</button>
+    <div class="logo">Flor Rosa Activewear</div>
+    <div class="header-icons">
+      <button>♡</button>
+      <button>⌕</button>
+      <button>⊕ 0</button>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Leggings</a>
+    <a href="#" class="active">Shorts</a>
+    <a href="#">Tops</a>
+    <a href="#">Sets</a>
+    <a href="#">Sale</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Muévete<br/>con <em>estilo</em></h1>
+      <p>Nueva colección · Primavera 2026</p>
+      <a href="#" class="hero-cta">Ver colección</a>
+    </div>
+    <div class="hero-badge">Flor Rosa</div>
+  </div>
+
+  <!-- Category filter -->
+  <div class="categories">
+    <button class="cat-btn active">Todos</button>
+    <button class="cat-btn">Shorts</button>
+    <button class="cat-btn">Leggings</button>
+    <button class="cat-btn">Tops</button>
+    <button class="cat-btn">Sets</button>
+    <button class="cat-btn">Más vendidos</button>
+  </div>
+
+  <!-- Section title -->
+  <div class="section-header">
+    <div>
+      <h2>Shorts</h2>
+      <p class="product-count">8 productos</p>
+    </div>
+    <button class="filter-btn">⚙ Filtrar y ordenar</button>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid">
+
+    <!-- 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-vino">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.25" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Curve – Scrunch | Pretina Cruzada | Cintura Alta</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#8b4513"></div>
+          <div class="dot" style="background:#2c2c2c"></div>
+          <div class="dot" style="background:#b0aaa3"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 18.800,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-gris">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.2" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Aura Cross – Pretina Cruzada | Cintura Alta | Fit Medio</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#b0aaa3"></div>
+          <div class="dot" style="background:#c0392b"></div>
+          <div class="dot" style="background:#6b7c4a"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 18.800,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-oliva">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.2" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Essential – Cintura Alta | Fit Clásico | Lycra Premium</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#6b7c4a"></div>
+          <div class="dot" style="background:#d4a882"></div>
+          <div class="dot" style="background:#2c2c2c"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 16.500,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-rojo">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.2" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <span style="position:absolute;top:12px;left:12px;background:var(--accent);color:white;font-size:9px;letter-spacing:2px;padding:5px 10px;text-transform:uppercase;">Nuevo</span>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Flame – Scrunch | Alto Impacto | Anti-Transparencia</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#c0392b"></div>
+          <div class="dot" style="background:#2c2c2c"></div>
+          <div class="dot" style="background:#8b4513"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 19.500,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-negro">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.15" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Onyx – Pretina Doble | Cintura Extra Alta | Tiro Largo</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#2c2c2c"></div>
+          <div class="dot" style="background:#2c4a7c"></div>
+          <div class="dot" style="background:#8b4513"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 20.000,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-nude">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.2" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Soft – Fit Suave | Pretina Ancha | Uso Diario</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#d4a882"></div>
+          <div class="dot" style="background:#b0aaa3"></div>
+          <div class="dot" style="background:#6b7c4a"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 15.900,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-azul">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.2" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <span style="position:absolute;top:12px;left:12px;background:#922b21;color:white;font-size:9px;letter-spacing:2px;padding:5px 10px;text-transform:uppercase;">Sale</span>
+        <div class="brand-label">NOVA</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Navy – Tiro Corto | Pretina Elástica | Deportivo</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#2c4a7c"></div>
+          <div class="dot" style="background:#2c2c2c"></div>
+        </div>
+        <p class="price"><span style="text-decoration:line-through;color:var(--warm-gray);font-size:11px">₡ 18.800</span>&nbsp; <span class="currency">₡</span> 14.900,00 CRC</p>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-placeholder swatch-verde">
+          <svg viewBox="0 0 100 200" width="55%" opacity="0.2" fill="white">
+            <ellipse cx="50" cy="30" rx="18" ry="18"/>
+            <path d="M32 55 Q20 90 22 130 L40 130 L45 100 L55 100 L60 130 L78 130 Q80 90 68 55 Q60 48 50 48 Q40 48 32 55Z"/>
+          </svg>
+        </div>
+        <div class="brand-label">Flor Rosa Activewear</div>
+        <button class="wishlist-btn">♡</button>
+        <div class="product-overlay">
+          <button class="quick-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Short Forest – Scrunch Trasero | Cintura Alta | Tiro Largo</h3>
+        <div class="color-dots">
+          <div class="dot" style="background:#2d6a4f"></div>
+          <div class="dot" style="background:#6b7c4a"></div>
+          <div class="dot" style="background:#2c2c2c"></div>
+        </div>
+        <p class="price"><span class="currency">₡</span> 18.800,00 CRC</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer CTA -->
+  <div class="footer-cta">
+    <p>Únete a nuestra comunidad</p>
+    <h2>@novaactivewear</h2>
+    <a href="https://www.instagram.com/">Seguir en Instagram</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 NOVA Activewear · Costa Rica</span>
+    <span>Envíos · Devoluciones · Contacto</span>
+  </footer>
+
+  <script>
+    // Category filter buttons
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Wishlist toggle
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+        btn.style.color = btn.textContent === '♥' ? '#ff6b6b' : 'rgba(255,255,255,0.7)';
+      });
+    });
+  </script>
+
+</body>
+</html>
